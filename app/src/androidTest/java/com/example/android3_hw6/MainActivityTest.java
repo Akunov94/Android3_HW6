@@ -28,8 +28,9 @@ public class MainActivityTest {
         onView(withId(R.id.btn_add)).perform(click());
         onView(withId(R.id.btn_minus)).check(matches(not(isDisplayed())));
     }
+
     @Test
-    public void editTextInputMethod(){
+    public void editTextInputMethod() {
 
     }
 
@@ -40,6 +41,7 @@ public class MainActivityTest {
         onView(withId(R.id.btn_add)).perform(click());
         onView(withId(R.id.tv_result)).check(matches(withText("6")));
     }
+
     @Test
     public void minusTest() {
         onView(withId(R.id.et_oper1)).perform(typeText("25"));
@@ -47,13 +49,22 @@ public class MainActivityTest {
         onView(withId(R.id.btn_minus)).perform(click());
         onView(withId(R.id.tv_result)).check(matches(withText("20")));
     }
+
+    //    @Test
+//    public void divisionTest() {
+//        onView(withId(R.id.et_oper1)).perform(typeText("50"));
+//        onView(withId(R.id.et_oper2)).perform(typeText("2"));
+//        onView(withId(R.id.btn_division)).perform(click());
+//        onView(withId(R.id.tv_result)).check(matches(withText("25")));
+//    }
     @Test
     public void divisionTest() {
-        onView(withId(R.id.et_oper1)).perform(typeText("50"));
-        onView(withId(R.id.et_oper2)).perform(typeText("2"));
+        onView(withId(R.id.et_oper1)).perform(typeText("100"));
+        onView(withId(R.id.et_oper2)).perform(typeText("gg"));
         onView(withId(R.id.btn_division)).perform(click());
-        onView(withId(R.id.tv_result)).check(matches(withText("25")));
+        onView(withId(R.id.tv_result)).check(matches(withText("пожалуйста, введите цифру")));
     }
+
     @Test
     public void multiplicationTest() {
         onView(withId(R.id.et_oper1)).perform(typeText("8"));

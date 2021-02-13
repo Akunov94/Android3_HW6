@@ -7,6 +7,8 @@ import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
+import android.widget.Toast;
 
 import com.example.android3_hw6.R;
 import com.example.android3_hw6.databinding.ActivityMainBinding;
@@ -21,32 +23,64 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        init();
-        validateSubtracting(binding.etOper1.getText().toString(), binding.etOper2.getText().toString());
+        calc();
     }
 
-    private void init() {
-        binding.btnAdd.setOnClickListener(v -> {
-            int oper1 = Integer.parseInt(binding.etOper1.getText().toString());
-            int oper2 = Integer.parseInt(binding.etOper2.getText().toString());
-            binding.tvResult.setText(String.valueOf(math.add(oper1, oper2)));
-        });
 
+    private void calc() {
+        binding.btnAdd.setOnClickListener(v -> {
+            String num1 = binding.etOper1.getText().toString();
+            String num2 = binding.etOper2.getText().toString();
+            if (num1.isEmpty() || num2.isEmpty()) {
+                binding.etOper2.setError("Не должен быть пустым");
+                binding.etOper1.setError("Не должен быть пустым");
+            } else {
+                int a = Integer.parseInt(num1);
+                int b = Integer.parseInt(num2);
+                binding.tvResult.setText(String.valueOf(math.add(a, b)));
+            }
+        });
         binding.btnMinus.setOnClickListener(v -> {
-            int oper1 = Integer.parseInt(binding.etOper1.getText().toString());
-            int oper2 = Integer.parseInt(binding.etOper2.getText().toString());
-            binding.tvResult.setText(String.valueOf(math.minus(oper1, oper2)));
+            String num1 = binding.etOper1.getText().toString();
+            String num2 = binding.etOper2.getText().toString();
+            if (num1.isEmpty() || num2.isEmpty()) {
+                binding.etOper2.setError("Не должен быть пустым");
+                binding.etOper1.setError("Не должен быть пустым");
+            } else {
+                int a = Integer.parseInt(num1);
+                int b = Integer.parseInt(num2);
+                binding.tvResult.setText(String.valueOf(math.minus(a, b)));
+            }
         });
         binding.btnMultiplication.setOnClickListener(view -> {
-            int oper1 = Integer.parseInt(binding.etOper1.getText().toString());
-            int oper2 = Integer.parseInt(binding.etOper2.getText().toString());
-            binding.tvResult.setText(String.valueOf(math.multiplication(oper1, oper2)));
+            String num1 = binding.etOper1.getText().toString();
+            String num2 = binding.etOper2.getText().toString();
+            if (num1.isEmpty() || num2.isEmpty()) {
+                binding.etOper2.setError("Не должен быть пустым");
+                binding.etOper1.setError("Не должен быть пустым");
+            } else {
+                int a = Integer.parseInt(num1);
+                int b = Integer.parseInt(num2);
+                binding.tvResult.setText(String.valueOf(math.multiplication(a, b)));
+            }
         });
         binding.btnDivision.setOnClickListener(view -> {
-            int oper1 = Integer.parseInt(binding.etOper1.getText().toString());
-            int oper2 = Integer.parseInt(binding.etOper2.getText().toString());
-            binding.tvResult.setText(String.valueOf(math.division(oper1, oper2)));
+            String num1 = binding.etOper1.getText().toString();
+            String num2 = binding.etOper2.getText().toString();
+            validateSubtracting(num1,num2);
         });
+//        binding.btnDivision.setOnClickListener(view -> {
+//            String num1 = binding.etOper1.getText().toString();
+//            String num2 = binding.etOper2.getText().toString();
+//            if (num1.isEmpty() || num2.isEmpty()) {
+//                binding.etOper2.setError("Не должен быть пустым");
+//                binding.etOper1.setError("Не должен быть пустым");
+//            } else {
+//                int a = Integer.parseInt(num1);
+//                int b = Integer.parseInt(num2);
+//                binding.tvResult.setText(String.valueOf(math.division(a, b)));
+//            }
+//        });
     }
 
     public void validateSubtracting(String first, String second) {
@@ -56,11 +90,11 @@ public class MainActivity extends AppCompatActivity {
             if (TextUtils.isDigitsOnly(first) && TextUtils.isDigitsOnly(second)) {
                 num1 = Integer.parseInt(first);
                 num2 = Integer.parseInt(second);
-                if (num1 > 0 && num2 > 0)
+                if (num1 > 0 && num2 > 0) {
                     binding.tvResult.setText(String.valueOf(math.subtractFunction(num1, num2)));
-                else binding.tvResult.setText("нельзя делить на 0");
+                } else binding.tvResult.setText("нельзя делить на 0");
             } else {
-                binding.tvResult.setText("пожалуйста, предоставьте действительный ввод");
+                binding.tvResult.setText("пожалуйста, введите цифру");
             }
         } else {
             binding.tvResult.setText("поле не может быть пустым");

@@ -22,7 +22,7 @@ public class Math {
     }
 
     public int subtractFunction(int a, int b) {
-        return subtractFunction(a, b);
+        return a/b;
     }
 
 }
