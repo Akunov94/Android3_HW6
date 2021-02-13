@@ -28,6 +28,10 @@ public class MainActivityTest {
         onView(withId(R.id.btn_add)).perform(click());
         onView(withId(R.id.btn_minus)).check(matches(not(isDisplayed())));
     }
+    @Test
+    public void editTextInputMethod(){
+
+    }
 
     @Test
     public void addTest() {

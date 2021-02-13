@@ -36,6 +36,7 @@ public class MathTest {
     @Test
     public void divisionTest() {
         assertEquals(5, math.division(15, 3));
+        assertEquals(0, math.division(50, 0));
         System.out.println("TEST DIVISION");
     }
 
